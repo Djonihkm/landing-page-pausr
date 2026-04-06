@@ -1,5 +1,7 @@
-// Compteur d'inscrits affiché (valeur de départ fictive)
-let count = 57;
+// ============================================================
+// Compteur d'inscrits affiché (doit correspondre au HTML)
+// ============================================================
+let count = 147;
 
 // ============================================================
 // SCROLL REVEAL
@@ -33,6 +35,7 @@ async function subscribe(inputId, successId, errorId) {
 
   // État de chargement
   btn.disabled = true;
+  const originalText = btn.textContent;
   btn.textContent = "Inscription...";
 
   try {
@@ -57,7 +60,7 @@ async function subscribe(inputId, successId, errorId) {
   } catch (err) {
     // Afficher l'erreur
     btn.disabled = false;
-    btn.textContent = "Je veux tester →";
+    btn.textContent = originalText; // restaure le texte original du bouton
     error.style.display = "block";
     console.error("Brevo error:", err.message);
   }
