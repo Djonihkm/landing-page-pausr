@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pausr — Reprends le contrôle de ton argent</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <!-- NAV -->
+    <nav>
+      <div class="logo">pausr</div>
+      <a href="#waitlist" class="nav-cta">Rejoindre la liste</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-glow"></div>
+      <div class="hero-glow2"></div>
+
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Bientôt disponible — accès anticipé
+      </div>
+
+      <h1>
+        Tu sais que tu devrais épargner.<br />
+        <em>L'impulsion est plus forte.</em>
+      </h1>
+
+      <p class="hero-sub">
+        Pausr t'aide à reprendre le contrôle de tes dépenses impulsives et à
+        construire une vraie épargne, un jour à la fois.
+      </p>
+
+      <div class="form-wrap" id="hero-form">
+        <input type="email" id="hero-email" placeholder="ton@email.com" />
+        <button class="btn-primary" onclick="subscribe('hero-email', 'hero-success', 'hero-error')">
+          Je veux tester →
+        </button>
+      </div>
+      <div class="success-msg" id="hero-success">
+        Tu es sur la liste ! On te prévient en premier.
+      </div>
+      <div class="error-msg" id="hero-error">
+        ⚠️ Une erreur est survenue. Réessaie dans quelques secondes.
+      </div>
+
+      <p class="counter">
+        <span id="count">47</span> personnes déjà inscrites
+      </p>
+    </section>
+
+    <!-- MIRROR -->
+    <section class="mirror reveal">
+      <p class="section-label">Tu te reconnais ?</p>
+      <h2>Ce que vivent des millions de personnes chaque mois</h2>
+
+      <div class="pain-cards">
+        <div class="pain-card">
+          <div class="pain-icon">🍔</div>
+          <strong>La bouffe commandée</strong>
+          <p>
+            Tu sais que cuisiner coûte moins cher. Mais ce soir, tu n'as pas
+            l'énergie. Et l'app est là, à portée de doigt.
+          </p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">🤲</div>
+          <strong>La générosité sous pression</strong>
+          <p>
+            Dans la rue, quelqu'un s'approche. Tu résistes parfois. Mais la
+            plupart du temps, tu donnes — et tu le regrettes.
+          </p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">💸</div>
+          <strong>Fin de mois mystérieux</strong>
+          <p>
+            Tu gagnes correctement ta vie. Pourtant à la fin du mois, tu te
+            demandes où est passé ton argent.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features reveal">
+      <div class="features-header">
+        <p class="section-label">La solution</p>
+        <h2>Pas une app bancaire froide.<br />Un coach comportemental.</h2>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-num">01</div>
+          <h3>🎯 Ton objectif concret</h3>
+          <p>
+            Voyage, voiture, épargne d'urgence... Tu choisis une photo, un
+            montant, une date. Pausr calcule combien mettre de côté chaque
+            semaine.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-num">02</div>
+          <h3>⚡ La Pause avant d'acheter</h3>
+          <p>
+            Avant une dépense impulsive, tu la soumets à Pausr. Il te pose une
+            question simple : <em>"Dans 48h, tu voudras encore ça ?"</em>
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-num">03</div>
+          <h3>🔥 Streak & momentum</h3>
+          <p>
+            Chaque jour où tu résistes à une impulsion, tu gardes ton streak. Tu
+            économises ce montant directement sur ton objectif.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-num">04</div>
+          <h3>📊 Résumé hebdomadaire</h3>
+          <p>
+            Chaque semaine, tu vois combien tu as résisté, combien tu as
+            économisé, et combien il te reste pour atteindre ton but.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how reveal">
+      <p class="section-label">Comment ça marche</p>
+      <h2>Simple. Humain. Efficace.</h2>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-left">
+            <div class="step-circle">1</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <h3>Définis ton objectif</h3>
+            <p>Choisis ce pour quoi tu épargnes. Une image, un montant, une date. Pausr fait le calcul.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-left">
+            <div class="step-circle">2</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <h3>Soumets tes impulsions</h3>
+            <p>Envie d'acheter quelque chose ? Tu le rentres en 2 taps. Pausr t'aide à décider en conscience.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-left">
+            <div class="step-circle">3</div>
+            <div class="step-line"></div>
+          </div>
+          <div class="step-content">
+            <h3>Résiste et progresse</h3>
+            <p>Chaque résistance alimente ton objectif. Tu vois ta progression en temps réel.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-left">
+            <div class="step-circle">4</div>
+          </div>
+          <div class="step-content">
+            <h3>Atteins ton objectif</h3>
+            <p>Semaine après semaine, l'habitude se crée. L'épargne devient automatique.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-final reveal" id="waitlist">
+      <div class="cta-box">
+        <h2>Rejoins les premiers testeurs</h2>
+        <p>Sois parmi les premiers à accéder à Pausr. Gratuit pendant la beta.</p>
+
+        <div class="form-wrap" id="cta-form">
+          <input type="email" id="cta-email" placeholder="ton@email.com" />
+          <button class="btn-primary" onclick="subscribe('cta-email', 'cta-success', 'cta-error')">
+            Je rejoins →
+          </button>
+        </div>
+        <div class="success-msg" id="cta-success">
+          Tu es sur la liste ! On te prévient en premier.
+        </div>
+        <div class="error-msg" id="cta-error">
+          ⚠️ Une erreur est survenue. Réessaie dans quelques secondes.
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>© 2026 Pausr — Reprends le contrôle, un jour à la fois.</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
