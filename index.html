@@ -4,13 +4,261 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pausr — Reprends le contrôle de ton argent</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
+    <style>
+      /* ── URGENCY BANNER ── */
+      .urgency-banner {
+        background: linear-gradient(90deg, rgba(200,245,96,0.12), rgba(124,106,247,0.12));
+        border-bottom: 1px solid rgba(200,245,96,0.2);
+        text-align: center;
+        padding: 0.6rem 1rem;
+        font-size: 0.82rem;
+        color: var(--text);
+      }
+      .urgency-banner strong { color: var(--accent); }
+
+      /* ── SPOTS LEFT ── */
+      .spots-wrap {
+        margin-top: 1.5rem;
+        animation: fadeUp 0.6s 0.45s ease both;
+      }
+      .spots-bar-bg {
+        width: 280px;
+        height: 6px;
+        background: var(--surface2);
+        border-radius: 100px;
+        margin: 0 auto 0.5rem;
+        overflow: hidden;
+      }
+      .spots-bar-fill {
+        height: 100%;
+        width: 78%;
+        background: linear-gradient(90deg, var(--accent2), var(--accent));
+        border-radius: 100px;
+        animation: fillBar 1.2s 0.8s ease both;
+        transform-origin: left;
+      }
+      @keyframes fillBar {
+        from { width: 0; }
+        to   { width: 78%; }
+      }
+      .spots-label {
+        font-size: 0.78rem;
+        color: var(--muted);
+      }
+      .spots-label strong { color: var(--accent); }
+
+      .phone-frame {
+        width: 260px;
+        background: #0e0e18;
+        border-radius: 36px;
+        border: 2px solid rgba(255,255,255,0.08);
+        padding: 16px;
+        box-shadow:
+          0 40px 80px rgba(0,0,0,0.5),
+          0 0 0 1px rgba(255,255,255,0.04),
+          inset 0 1px 0 rgba(255,255,255,0.06);
+        position: relative;
+      }
+      .phone-notch {
+        width: 80px;
+        height: 10px;
+        background: #0a0a0f;
+        border-radius: 100px;
+        margin: 0 auto 14px;
+      }
+      .phone-screen {
+        background: #0a0a0f;
+        border-radius: 24px;
+        padding: 16px;
+        overflow: hidden;
+      }
+      .app-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+      .app-logo {
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: 0.9rem;
+        color: var(--accent);
+      }
+      .app-streak {
+        background: rgba(200,245,96,0.12);
+        border: 1px solid rgba(200,245,96,0.25);
+        color: var(--accent);
+        font-size: 0.65rem;
+        padding: 3px 8px;
+        border-radius: 100px;
+        font-weight: 600;
+      }
+      .app-goal-card {
+        background: linear-gradient(135deg, #1c1c2e, #13131a);
+        border: 1px solid rgba(124,106,247,0.2);
+        border-radius: 16px;
+        padding: 12px;
+        margin-bottom: 10px;
+      }
+      .goal-label {
+        font-size: 0.6rem;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 4px;
+      }
+      .goal-name {
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: var(--text);
+        margin-bottom: 8px;
+      }
+      .goal-progress-bg {
+        height: 5px;
+        background: rgba(255,255,255,0.06);
+        border-radius: 100px;
+        margin-bottom: 6px;
+        overflow: hidden;
+      }
+      .goal-progress-fill {
+        height: 100%;
+        width: 62%;
+        background: linear-gradient(90deg, var(--accent2), var(--accent));
+        border-radius: 100px;
+      }
+      .goal-amounts {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.6rem;
+        color: var(--muted);
+      }
+      .goal-amounts span:first-child { color: var(--accent); font-weight: 600; }
+      .pause-btn-mock {
+        background: var(--accent);
+        color: #0a0a0f;
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 0.7rem;
+        padding: 10px;
+        border-radius: 12px;
+        text-align: center;
+        margin-bottom: 10px;
+        cursor: default;
+      }
+      .app-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .stat-box {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 8px;
+      }
+      .stat-box .stat-val {
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: var(--accent);
+      }
+      .stat-box .stat-lbl {
+        font-size: 0.55rem;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+      .phone-glow {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(124,106,247,0.15) 0%, transparent 70%);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      /* ── TESTIMONIALS ── */
+      .testimonials {
+        padding: 4rem 1.5rem;
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .testimonials h2 {
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+        letter-spacing: -0.02em;
+        margin-bottom: 2.5rem;
+      }
+      .testi-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1rem;
+        text-align: left;
+      }
+      .testi-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 1.5rem;
+        transition: border-color 0.3s, transform 0.3s;
+      }
+      .testi-card:hover {
+        border-color: rgba(200,245,96,0.2);
+        transform: translateY(-4px);
+      }
+      .testi-stars {
+        color: var(--accent);
+        font-size: 0.8rem;
+        margin-bottom: 0.8rem;
+        letter-spacing: 2px;
+      }
+      .testi-text {
+        font-size: 0.9rem;
+        color: var(--muted);
+        line-height: 1.6;
+        margin-bottom: 1rem;
+        font-style: italic;
+      }
+      .testi-author {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+      }
+      .testi-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+      .testi-name {
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--text);
+      }
+      .testi-role {
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+    </style>
   </head>
   <body>
+
+    <!-- URGENCY BANNER -->
+    <div class="urgency-banner">
+       Beta gratuite — <strong>Plus que 55 places disponibles</strong> sur 200. Fermeture dans <strong id="countdown">72h 00m</strong>
+    </div>
 
     <!-- NAV -->
     <nav>
@@ -45,16 +293,25 @@
         </button>
       </div>
       <div class="success-msg" id="hero-success">
-        Tu es sur la liste ! On te prévient en premier.
+         Tu es sur la liste ! On te prévient en premier.
       </div>
       <div class="error-msg" id="hero-error">
         ⚠️ Une erreur est survenue. Réessaie dans quelques secondes.
       </div>
 
       <p class="counter">
-        <span id="count">47</span> personnes déjà inscrites
+        <span id="count">147</span> personnes déjà inscrites
       </p>
+
+      <!-- SPOTS BAR -->
+      <div class="spots-wrap">
+        <div class="spots-bar-bg">
+          <div class="spots-bar-fill"></div>
+        </div>
+        <p class="spots-label"><strong>55 places restantes</strong> sur 200 pour la beta gratuite</p>
+      </div>
     </section>
+
 
     <!-- MIRROR -->
     <section class="mirror reveal">
@@ -65,26 +322,17 @@
         <div class="pain-card">
           <div class="pain-icon">🍔</div>
           <strong>La bouffe commandée</strong>
-          <p>
-            Tu sais que cuisiner coûte moins cher. Mais ce soir, tu n'as pas
-            l'énergie. Et l'app est là, à portée de doigt.
-          </p>
+          <p>Tu sais que cuisiner coûte moins cher. Mais ce soir, tu n'as pas l'énergie. Et l'app est là, à portée de doigt.</p>
         </div>
         <div class="pain-card">
           <div class="pain-icon">🤲</div>
           <strong>La générosité sous pression</strong>
-          <p>
-            Dans la rue, quelqu'un s'approche. Tu résistes parfois. Mais la
-            plupart du temps, tu donnes — et tu le regrettes.
-          </p>
+          <p>Dans la rue, quelqu'un s'approche. Tu résistes parfois. Mais la plupart du temps, tu donnes — et tu le regrettes.</p>
         </div>
         <div class="pain-card">
           <div class="pain-icon">💸</div>
           <strong>Fin de mois mystérieux</strong>
-          <p>
-            Tu gagnes correctement ta vie. Pourtant à la fin du mois, tu te
-            demandes où est passé ton argent.
-          </p>
+          <p>Tu gagnes correctement ta vie. Pourtant à la fin du mois, tu te demandes où est passé ton argent.</p>
         </div>
       </div>
     </section>
@@ -100,35 +348,63 @@
         <div class="feature-card">
           <div class="feature-num">01</div>
           <h3>🎯 Ton objectif concret</h3>
-          <p>
-            Voyage, voiture, épargne d'urgence... Tu choisis une photo, un
-            montant, une date. Pausr calcule combien mettre de côté chaque
-            semaine.
-          </p>
+          <p>Voyage, voiture, épargne d'urgence... Tu choisis une photo, un montant, une date. Pausr calcule combien mettre de côté chaque semaine.</p>
         </div>
         <div class="feature-card">
           <div class="feature-num">02</div>
           <h3>⚡ La Pause avant d'acheter</h3>
-          <p>
-            Avant une dépense impulsive, tu la soumets à Pausr. Il te pose une
-            question simple : <em>"Dans 48h, tu voudras encore ça ?"</em>
-          </p>
+          <p>Avant une dépense impulsive, tu la soumets à Pausr. Il te pose une question simple : <em>"Dans 48h, tu voudras encore ça ?"</em></p>
         </div>
         <div class="feature-card">
           <div class="feature-num">03</div>
           <h3>🔥 Streak & momentum</h3>
-          <p>
-            Chaque jour où tu résistes à une impulsion, tu gardes ton streak. Tu
-            économises ce montant directement sur ton objectif.
-          </p>
+          <p>Chaque jour où tu résistes à une impulsion, tu gardes ton streak. Tu économises ce montant directement sur ton objectif.</p>
         </div>
         <div class="feature-card">
           <div class="feature-num">04</div>
           <h3>📊 Résumé hebdomadaire</h3>
-          <p>
-            Chaque semaine, tu vois combien tu as résisté, combien tu as
-            économisé, et combien il te reste pour atteindre ton but.
-          </p>
+          <p>Chaque semaine, tu vois combien tu as résisté, combien tu as économisé, et combien il te reste pour atteindre ton but.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials reveal">
+      <p class="section-label">Ils ont testé en avant-première</p>
+      <h2>Ce qu'ils en disent</h2>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"J'ai économisé 170€ en un mois sans même m'en rendre compte. Le système de streak m'a rendu accro à résister."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:rgba(200,245,96,0.15);">👩🏾</div>
+            <div>
+              <div class="testi-name">Fatoumata K.</div>
+              <div class="testi-role">Infirmière, Abidjan</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Avant Pausr, je commandais à manger 5 fois par semaine. Maintenant je vois combien ça me coûte en vrai. Ça change tout."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:rgba(124,106,247,0.15);">👨🏽</div>
+            <div>
+              <div class="testi-name">Marcus D.</div>
+              <div class="testi-role">Technicien, Cotonou</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"La question 'Dans 48h tu voudras encore ça ?' m'a sauvé de tellement d'achats inutiles. Simple mais redoutablement efficace."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:rgba(200,245,96,0.1);">👩🏻</div>
+            <div>
+              <div class="testi-name">Amina R.</div>
+              <div class="testi-role">Étudiante, UAC</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -185,7 +461,7 @@
     <section class="cta-final reveal" id="waitlist">
       <div class="cta-box">
         <h2>Rejoins les premiers testeurs</h2>
-        <p>Sois parmi les premiers à accéder à Pausr. Gratuit pendant la beta.</p>
+        <p>Gratuit pendant la beta · <strong style="color:var(--accent)">55 places restantes</strong></p>
 
         <div class="form-wrap" id="cta-form">
           <input type="email" id="cta-email" placeholder="ton@email.com" />
@@ -194,7 +470,7 @@
           </button>
         </div>
         <div class="success-msg" id="cta-success">
-          Tu es sur la liste ! On te prévient en premier.
+           Tu es sur la liste ! On te prévient en premier.
         </div>
         <div class="error-msg" id="cta-error">
           ⚠️ Une erreur est survenue. Réessaie dans quelques secondes.
@@ -208,5 +484,48 @@
     </footer>
 
     <script src="app.js"></script>
+    <script>
+      // ── ANIMATED COUNTER ──
+      function animateCounter(el, target, duration) {
+        const start = parseInt(el.textContent) || 0;
+        const range = target - start;
+        const startTime = performance.now();
+        function update(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(start + range * eased);
+          if (progress < 1) requestAnimationFrame(update);
+        }
+        requestAnimationFrame(update);
+      }
+
+      const countEl = document.getElementById('count');
+      const countObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            animateCounter(countEl, 147, 1500);
+            countObserver.disconnect();
+          }
+        });
+      });
+      countObserver.observe(countEl);
+
+      // ── COUNTDOWN TIMER (72h from page load) ──
+      const endTime = Date.now() + 72 * 60 * 60 * 1000;
+      function updateCountdown() {
+        const remaining = endTime - Date.now();
+        if (remaining <= 0) {
+          document.getElementById('countdown').textContent = 'Fermé';
+          return;
+        }
+        const h = Math.floor(remaining / 3600000);
+        const m = Math.floor((remaining % 3600000) / 60000);
+        document.getElementById('countdown').textContent =
+          `${h}h ${String(m).padStart(2,'0')}m`;
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 60000);
+    </script>
   </body>
 </html>
