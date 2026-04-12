@@ -49,179 +49,393 @@
       }
       .spots-label strong { color: var(--accent); }
 
-      .phone-frame {
-        width: 260px;
-        background: #0e0e18;
-        border-radius: 36px;
-        border: 2px solid rgba(255,255,255,0.08);
-        padding: 16px;
-        box-shadow:
-          0 40px 80px rgba(0,0,0,0.5),
-          0 0 0 1px rgba(255,255,255,0.04),
-          inset 0 1px 0 rgba(255,255,255,0.06);
+      /* ── PLAY STORE BADGE ── */
+      .hero-store {
+        display: flex;
+        flex-direction: column;
+        gap: 0.55rem;
+        animation: fadeUp 0.6s 0.35s ease both;
+      }
+      .play-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.85rem;
+        background: #0d0d0d;
+        border: 1.5px solid rgba(255,255,255,0.2);
+        border-radius: 12px;
+        padding: 0.7rem 1.6rem 0.7rem 1.2rem;
+        text-decoration: none;
+        transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        width: fit-content;
+      }
+      .play-badge:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 32px rgba(0,0,0,0.6);
+        border-color: rgba(255,255,255,0.32);
+      }
+      .play-badge-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.15;
+      }
+      .play-badge-eyebrow {
+        font-size: 0.6rem;
+        color: rgba(255,255,255,0.65);
+        letter-spacing: 0.1em;
+        font-family: "DM Sans", sans-serif;
+        font-weight: 400;
+      }
+      .play-badge-name {
+        font-size: 1.18rem;
+        color: #fff;
+        font-family: "DM Sans", sans-serif;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+      }
+      .store-note {
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+
+      /* ── PHONE MOCKUP RÉALISTE ── */
+      .phone-mockup {
         position: relative;
+        transform: perspective(1200px) rotateY(-8deg) rotateX(3deg);
+        transition: transform 0.55s cubic-bezier(0.23, 1, 0.32, 1);
+        filter: drop-shadow(28px 40px 60px rgba(0,0,0,0.65))
+                drop-shadow(0 0 1px rgba(255,255,255,0.04));
       }
-      .phone-notch {
-        width: 80px;
-        height: 10px;
-        background: #0a0a0f;
-        border-radius: 100px;
-        margin: 0 auto 14px;
+      .phone-mockup:hover {
+        transform: perspective(1200px) rotateY(-3deg) rotateX(1deg);
       }
-      .phone-screen {
-        background: #0a0a0f;
-        border-radius: 24px;
-        padding: 16px;
+      /* Boutons latéraux */
+      .phone-side-btn {
+        position: absolute;
+        background: linear-gradient(to right, #252535, #383850);
+        border-radius: 3px;
+        z-index: 2;
+      }
+      .phone-vol-up   { width: 4px; height: 34px; left: -4px; top: 128px; border-radius: 2px 0 0 2px; }
+      .phone-vol-down { width: 4px; height: 34px; left: -4px; top: 174px; border-radius: 2px 0 0 2px; }
+      .phone-power    { width: 4px; height: 52px; right: -4px; top: 152px; border-radius: 0 2px 2px 0; }
+      /* Châssis */
+      .phone-chassis {
+        width: 290px;
+        height: 610px;
+        background: linear-gradient(160deg, #2e2e44 0%, #1e1e30 50%, #14141e 100%);
+        border-radius: 48px;
+        border: 2px solid rgba(255,255,255,0.1);
+        position: relative;
         overflow: hidden;
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,0.08),
+          inset 0 -1px 0 rgba(0,0,0,0.4);
       }
-      .app-header {
+      /* Reflet sur le bord */
+      .phone-chassis::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 46px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 40%);
+        pointer-events: none;
+        z-index: 3;
+      }
+      /* Zone d'écran */
+      .phone-display {
+        position: absolute;
+        inset: 10px;
+        background: #0a0a0f;
+        border-radius: 40px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      /* Dynamic island */
+      .phone-pill {
+        position: absolute;
+        top: 14px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 94px;
+        height: 28px;
+        background: #05050a;
+        border-radius: 100px;
+        z-index: 10;
+        box-shadow: 0 0 0 1.5px rgba(255,255,255,0.05);
+      }
+      /* Status bar */
+      .ss-statusbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 22px 0;
+        font-size: 0.6rem;
+        font-weight: 700;
+        color: var(--text);
+        font-family: "Syne", sans-serif;
+        height: 46px;
+        flex-shrink: 0;
+      }
+      .ss-status-icons {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+      }
+      /* Dashboard */
+      .ss-dashboard {
+        flex: 1;
+        padding: 6px 13px 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        overflow: hidden;
+        min-height: 0;
+      }
+      .ss-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 14px;
       }
-      .app-logo {
+      .ss-logo {
         font-family: "Syne", sans-serif;
         font-weight: 800;
-        font-size: 0.9rem;
+        font-size: 0.95rem;
         color: var(--accent);
       }
-      .app-streak {
+      .ss-streak {
         background: rgba(200,245,96,0.12);
         border: 1px solid rgba(200,245,96,0.25);
         color: var(--accent);
-        font-size: 0.65rem;
+        font-size: 0.58rem;
         padding: 3px 8px;
         border-radius: 100px;
         font-weight: 600;
       }
-      .app-goal-card {
-        background: linear-gradient(135deg, #1c1c2e, #13131a);
-        border: 1px solid rgba(124,106,247,0.2);
-        border-radius: 16px;
-        padding: 12px;
-        margin-bottom: 10px;
-      }
-      .goal-label {
-        font-size: 0.6rem;
-        color: var(--muted);
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        margin-bottom: 4px;
-      }
-      .goal-name {
-        font-family: "Syne", sans-serif;
-        font-weight: 700;
-        font-size: 0.85rem;
-        color: var(--text);
-        margin-bottom: 8px;
-      }
-      .goal-progress-bg {
-        height: 5px;
-        background: rgba(255,255,255,0.06);
-        border-radius: 100px;
-        margin-bottom: 6px;
-        overflow: hidden;
-      }
-      .goal-progress-fill {
-        height: 100%;
-        width: 62%;
-        background: linear-gradient(90deg, var(--accent2), var(--accent));
-        border-radius: 100px;
-      }
-      .goal-amounts {
+      /* Objectif hero (image + nom + date) */
+      .ss-goal-hero {
         display: flex;
-        justify-content: space-between;
-        font-size: 0.6rem;
-        color: var(--muted);
+        align-items: center;
+        gap: 10px;
+        flex-shrink: 0;
       }
-      .goal-amounts span:first-child { color: var(--accent); font-weight: 600; }
-      .pause-btn-mock {
-        background: var(--accent);
-        color: #0a0a0f;
-        font-family: "Syne", sans-serif;
-        font-weight: 700;
-        font-size: 0.7rem;
-        padding: 10px;
-        border-radius: 12px;
-        text-align: center;
-        margin-bottom: 10px;
-        cursor: default;
+      .ss-goal-img {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #1c1c2e, #2a1a3e);
+        border: 1.5px solid rgba(124,106,247,0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        flex-shrink: 0;
       }
-      .app-stats {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-      }
-      .stat-box {
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        padding: 8px;
-      }
-      .stat-box .stat-val {
+      .ss-goal-meta { display: flex; flex-direction: column; gap: 1px; }
+      .ss-goal-name {
         font-family: "Syne", sans-serif;
         font-weight: 700;
         font-size: 0.9rem;
+        color: var(--text);
+      }
+      .ss-goal-date {
+        font-size: 0.52rem;
+        color: var(--muted);
+        font-family: "DM Sans", sans-serif;
+      }
+      /* Progression */
+      .ss-progress-section {
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .ss-amount-main {
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 0.82rem;
         color: var(--accent);
       }
-      .stat-box .stat-lbl {
+      .ss-progress-track {
+        height: 5px;
+        background: rgba(255,255,255,0.07);
+        border-radius: 100px;
+        overflow: hidden;
+      }
+      .ss-progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent2), var(--accent));
+        border-radius: 100px;
+      }
+      .ss-amount-target {
+        font-size: 0.5rem;
+        color: var(--muted);
+      }
+      /* Carte budget */
+      .ss-budget-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 9px 11px;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+      .ss-budget-label {
         font-size: 0.55rem;
         color: var(--muted);
-        margin-top: 2px;
+        font-family: "DM Sans", sans-serif;
       }
-      .phone-glow {
-        position: absolute;
-        width: 300px;
-        height: 300px;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(124,106,247,0.15) 0%, transparent 70%);
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        pointer-events: none;
-        z-index: -1;
+      .ss-budget-status {
+        font-family: "Syne", sans-serif;
+        font-weight: 600;
+        font-size: 0.62rem;
+        color: var(--accent);
+      }
+      /* Bouton impulsion — fidèle à l'app */
+      .ss-impulse-btn {
+        background: var(--accent);
+        border-radius: 14px;
+        padding: 10px 13px;
+        flex-shrink: 0;
+        cursor: default;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+        margin-top: auto;
+      }
+      .ss-impulse-main {
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 0.72rem;
+        color: #0a0a0f;
+        letter-spacing: -0.01em;
+      }
+      .ss-impulse-sub {
+        font-size: 0.48rem;
+        color: rgba(10,10,15,0.6);
+        font-family: "DM Sans", sans-serif;
+      }
+      /* Bottom nav */
+      .ss-nav {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 7px 8px 4px;
+        border-top: 1px solid rgba(255,255,255,0.05);
+        background: var(--surface);
+        flex-shrink: 0;
+      }
+      .ss-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        opacity: 0.4;
+      }
+      .ss-nav-item span {
+        font-size: 0.42rem;
+        font-family: "DM Sans", sans-serif;
+        color: var(--text);
+      }
+      .ss-nav-active {
+        opacity: 1;
+        color: var(--accent);
+      }
+      .ss-nav-active svg { color: var(--accent); }
+      .ss-nav-active span { color: var(--accent); }
+      /* Barre home */
+      .phone-home-bar {
+        width: 70px;
+        height: 3px;
+        background: rgba(255,255,255,0.15);
+        border-radius: 100px;
+        margin: 5px auto 8px;
+        flex-shrink: 0;
       }
 
-      /* ── TESTIMONIALS ── */
+      /* ── TESTIMONIALS MARQUEE ── */
       .testimonials {
-        padding: 4rem 1.5rem;
-        max-width: 900px;
-        margin: 0 auto;
+        padding: 4rem 0;
         text-align: center;
+        overflow: hidden;
+        max-width: 100%;
+      }
+      .testimonials-header {
+        max-width: 900px;
+        margin: 0 auto 2.5rem;
+        padding: 0 1.5rem;
       }
       .testimonials h2 {
         font-family: "Syne", sans-serif;
         font-weight: 700;
         font-size: clamp(1.6rem, 3.5vw, 2.4rem);
         letter-spacing: -0.02em;
-        margin-bottom: 2.5rem;
+        margin-bottom: 0;
       }
-      .testi-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      /* Conteneur du défilement */
+      .testi-marquee {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        /* Fondu sur les bords */
+        mask-image: linear-gradient(
+          to right,
+          transparent 0%,
+          black 8%,
+          black 92%,
+          transparent 100%
+        );
+        -webkit-mask-image: linear-gradient(
+          to right,
+          transparent 0%,
+          black 8%,
+          black 92%,
+          transparent 100%
+        );
+        cursor: default;
+      }
+      /* Track — contient les cartes × 2 */
+      .testi-track {
+        display: flex;
         gap: 1rem;
-        text-align: left;
+        width: max-content;
+        animation: testiScroll 32s linear infinite;
       }
+      /* Pause au survol de la zone */
+      .testi-marquee:hover .testi-track {
+        animation-play-state: paused;
+      }
+      @keyframes testiScroll {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
+      }
+      /* Cartes */
       .testi-card {
+        width: 290px;
+        flex-shrink: 0;
         background: var(--surface);
         border: 1px solid var(--border);
         border-radius: 18px;
-        padding: 1.5rem;
+        padding: 1.4rem;
+        text-align: left;
         transition: border-color 0.3s, transform 0.3s;
+        cursor: default;
       }
-      .testi-card:hover {
-        border-color: rgba(200,245,96,0.2);
+      .testi-marquee:hover .testi-card:hover {
+        border-color: rgba(200,245,96,0.25);
         transform: translateY(-4px);
       }
       .testi-stars {
         color: var(--accent);
-        font-size: 0.8rem;
-        margin-bottom: 0.8rem;
+        font-size: 0.78rem;
+        margin-bottom: 0.75rem;
         letter-spacing: 2px;
       }
       .testi-text {
-        font-size: 0.9rem;
+        font-size: 0.88rem;
         color: var(--muted);
         line-height: 1.6;
         margin-bottom: 1rem;
@@ -239,16 +453,16 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1rem;
+        font-size: 1.05rem;
         flex-shrink: 0;
       }
       .testi-name {
-        font-size: 0.85rem;
+        font-size: 0.84rem;
         font-weight: 500;
         color: var(--text);
       }
       .testi-role {
-        font-size: 0.75rem;
+        font-size: 0.73rem;
         color: var(--muted);
       }
     </style>
@@ -272,40 +486,49 @@
       <div class="hero-glow2"></div>
 
       <div class="hero-inner">
+
+        <!-- ── COLONNE GAUCHE (55%) ── -->
         <div class="hero-text">
+
           <div class="badge">
             <span class="badge-dot"></span>
-            Bientôt disponible — accès anticipé
+            Accès anticipé
           </div>
 
           <h1>
-            Tu sais que tu devrais épargner.<br />
-            <em>L'impulsion est plus forte.</em>
+            Tu sais que tu devrais<br />épargner.
+            <em>L'impulsion<br />est plus forte.</em>
           </h1>
 
           <p class="hero-sub">
-            Pausr t'aide à reprendre le contrôle de tes dépenses impulsives et à
-            construire une vraie épargne, un jour à la fois.
+            Pausr t'aide à reprendre le contrôle de tes dépenses impulsives
+            et à construire une vraie épargne, un jour à la fois.
           </p>
 
-          <div class="form-wrap" id="hero-form">
-            <input type="email" id="hero-email" placeholder="ton@email.com" />
-            <button class="btn-primary" onclick="subscribe('hero-email', 'hero-success', 'hero-error')">
-              Je veux tester →
-            </button>
-          </div>
-          <div class="success-msg" id="hero-success">
-             Tu es sur la liste ! On te prévient en premier.
-          </div>
-          <div class="error-msg" id="hero-error">
-            ⚠️ Une erreur est survenue. Réessaie dans quelques secondes.
+          <!-- Badge Google Play -->
+          <div class="hero-store">
+            <a href="#" class="play-badge" id="play-store-link" aria-label="Bientôt disponible sur Google Play">
+              <!-- Icône Google Play (4 sections colorées) -->
+              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="36" aria-hidden="true">
+                <path d="M4 3 L4 29 L17.5 16 Z" fill="#00C4FF"/>
+                <path d="M4 3 L21 11 L17.5 16 Z" fill="#FFCA28"/>
+                <path d="M4 29 L17.5 16 L21 21 Z" fill="#34A853"/>
+                <path d="M17.5 16 L21 11 L26 16 L21 21 Z" fill="#EA4335"/>
+              </svg>
+              <div class="play-badge-text">
+                <span class="play-badge-eyebrow">GET IT ON</span>
+                <span class="play-badge-name">Google Play</span>
+              </div>
+            </a>
+            <p class="store-note">Version bêta · <strong style="color:var(--accent)">Téléchargement direct disponible</strong></p>
           </div>
 
+          <!-- Compteur inscrits -->
           <p class="counter">
             <span id="count">147</span> personnes déjà inscrites
           </p>
 
-          <!-- SPOTS BAR -->
+          <!-- Barre de places -->
           <div class="spots-wrap">
             <div class="spots-bar-bg">
               <div class="spots-bar-fill"></div>
@@ -314,42 +537,120 @@
           </div>
         </div>
 
-        <!-- PHONE MOCKUP -->
+        <!-- ── COLONNE DROITE (45%) : MOCKUP ── -->
         <div class="hero-phone">
-          <div class="phone-glow"></div>
-          <div class="phone-frame">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <div class="app-header">
-                <div class="app-logo">pausr</div>
-                <div class="app-streak">🔥 7 jours</div>
-              </div>
-              <div class="app-goal-card">
-                <div class="goal-label">Mon objectif</div>
-                <div class="goal-name">📱 Nouveau téléphone</div>
-                <div class="goal-progress-bg">
-                  <div class="goal-progress-fill"></div>
+          <div class="phone-mockup">
+            <!-- Boutons latéraux -->
+            <div class="phone-side-btn phone-vol-up"></div>
+            <div class="phone-side-btn phone-vol-down"></div>
+            <div class="phone-side-btn phone-power"></div>
+
+            <!-- Châssis -->
+            <div class="phone-chassis">
+              <!-- Dynamic Island -->
+              <div class="phone-pill"></div>
+
+              <!-- Écran -->
+              <div class="phone-display">
+
+                <!-- Barre de statut -->
+                <div class="ss-statusbar">
+                  <span>9:41</span>
+                  <div class="ss-status-icons">
+                    <!-- Signal réseau -->
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="white" aria-hidden="true">
+                      <rect x="0"   y="6"   width="2.5" height="4"   opacity="0.35"/>
+                      <rect x="3.8" y="4"   width="2.5" height="6"   opacity="0.55"/>
+                      <rect x="7.6" y="2"   width="2.5" height="8"   opacity="0.8"/>
+                      <rect x="11.4" y="0"  width="2.5" height="10"/>
+                    </svg>
+                    <!-- Wi-Fi -->
+                    <svg width="13" height="10" viewBox="0 0 20 16" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                      <path d="M1 5C5.5 0.5 14.5 0.5 19 5" opacity="0.4"/>
+                      <path d="M3.5 8.5C6.5 5.5 13.5 5.5 16.5 8.5" opacity="0.65"/>
+                      <path d="M6.5 12C8 10.5 12 10.5 13.5 12" opacity="0.9"/>
+                      <circle cx="10" cy="15" r="1.5" fill="white" stroke="none"/>
+                    </svg>
+                    <!-- Batterie -->
+                    <svg width="24" height="12" viewBox="0 0 26 12" fill="none" aria-hidden="true">
+                      <rect x="0.75" y="0.75" width="21.5" height="10.5" rx="3" stroke="white" stroke-opacity="0.4" stroke-width="1.5"/>
+                      <rect x="2.5" y="2.5" width="15" height="7" rx="1.5" fill="white"/>
+                      <path d="M23.5 4v4a2.5 2.5 0 0 0 0-4Z" fill="white" fill-opacity="0.35"/>
+                    </svg>
+                  </div>
                 </div>
-                <div class="goal-amounts">
-                  <span>62 000 FCFA</span>
-                  <span>100 000 FCFA</span>
+
+                <!-- Contenu app : Dashboard fidèle -->
+                <div class="ss-dashboard">
+
+                  <!-- En-tête -->
+                  <div class="ss-header">
+                    <span class="ss-logo">pausr</span>
+                    <span class="ss-streak">🔥 1 jour</span>
+                  </div>
+
+                  <!-- Objectif : image circulaire + nom + date -->
+                  <div class="ss-goal-hero">
+                    <div class="ss-goal-img">✈️</div>
+                    <div class="ss-goal-meta">
+                      <div class="ss-goal-name">Paris</div>
+                      <div class="ss-goal-date">Lundi 19 fév. 2027</div>
+                    </div>
+                  </div>
+
+                  <!-- Progression -->
+                  <div class="ss-progress-section">
+                    <div class="ss-amount-main">50 000 FCFA</div>
+                    <div class="ss-progress-track">
+                      <div class="ss-progress-fill" style="width:8%"></div>
+                    </div>
+                    <div class="ss-amount-target">sur 620 000 FCFA</div>
+                  </div>
+
+                  <!-- Carte budget -->
+                  <div class="ss-budget-card">
+                    <div class="ss-budget-label">💰 Budget du mois</div>
+                    <div class="ss-budget-status">Objectif semaine atteint 🎉</div>
+                  </div>
+
+                  <!-- Bouton impulsion -->
+                  <div class="ss-impulse-btn">
+                    <div class="ss-impulse-main">
+                      🧠 J'ai eu une impulsion
+                    </div>
+                    <div class="ss-impulse-sub">Prends une pause avant de décider</div>
+                  </div>
+
+                </div><!-- /.ss-dashboard -->
+
+                <!-- Bottom nav -->
+                <div class="ss-nav">
+                  <div class="ss-nav-item ss-nav-active">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                    <span>Accueil</span>
+                  </div>
+                  <div class="ss-nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    <span>Résumé</span>
+                  </div>
+                  <div class="ss-nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    <span>Épargner</span>
+                  </div>
+                  <div class="ss-nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                    <span>Profil</span>
+                  </div>
                 </div>
-              </div>
-              <div class="pause-btn-mock">⏸ Soumettre une impulsion</div>
-              <div class="app-stats">
-                <div class="stat-box">
-                  <div class="stat-val">14</div>
-                  <div class="stat-lbl">Impulsions résistées</div>
-                </div>
-                <div class="stat-box">
-                  <div class="stat-val">32k</div>
-                  <div class="stat-lbl">FCFA économisés</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+                <!-- Barre home -->
+                <div class="phone-home-bar"></div>
+              </div><!-- /.phone-display -->
+            </div><!-- /.phone-chassis -->
+          </div><!-- /.phone-mockup -->
+        </div><!-- /.hero-phone -->
+
+      </div><!-- /.hero-inner -->
     </section>
 
 

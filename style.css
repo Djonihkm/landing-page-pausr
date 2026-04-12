@@ -83,13 +83,11 @@ nav {
 
 /* HERO */
 .hero {
-  min-height: 92vh;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 4rem 1.5rem 6rem;
+  padding: 6rem 2rem 5rem;
   position: relative;
   overflow: hidden;
 }
@@ -148,11 +146,11 @@ nav {
 h1 {
   font-family: "Syne", sans-serif;
   font-weight: 500;
-  font-size: clamp(2.6rem, 7vw, 5.5rem);
-  line-height: 1.05;
+  font-size: clamp(2.4rem, 5vw, 4.8rem);
+  line-height: 1.06;
   letter-spacing: -0.03em;
-  max-width: 800px;
-  margin-bottom: 1.5rem;
+  max-width: 680px;
+  margin-bottom: 0;
   animation: fadeUp 0.6s 0.1s ease both;
 }
 
@@ -162,12 +160,13 @@ h1 em {
 }
 
 .hero-sub {
-  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
   color: var(--muted);
-  max-width: 500px;
-  margin-bottom: 3rem;
+  max-width: 480px;
+  margin-bottom: 0;
   font-weight: 300;
   animation: fadeUp 0.6s 0.2s ease both;
+  line-height: 1.65;
 }
 
 /* FORM */
@@ -225,7 +224,7 @@ h1 em {
 }
 
 .counter {
-  margin-top: 1.2rem;
+  margin-top: 0;
   font-size: 0.85rem;
   color: var(--muted);
   animation: fadeUp 0.6s 0.4s ease both;
@@ -561,53 +560,71 @@ footer {
 }
 
 /* ── HERO TWO-COLUMN LAYOUT ── */
+.hero {
+  min-height: 100vh;
+  justify-content: center;
+  padding: 6rem 2rem 5rem;
+}
+
 .hero-inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  gap: 3rem;
   align-items: center;
-  gap: 4rem;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1200px;
   position: relative;
   z-index: 1;
 }
 
 .hero-text {
-  flex: 1;
-  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  gap: 1.6rem;
   text-align: left;
 }
 
-.hero-text .badge      { align-self: flex-start; }
-.hero-text .form-wrap  { justify-content: flex-start; }
+.hero-text .badge,
+.hero-text h1,
+.hero-text .hero-sub,
 .hero-text .counter    { text-align: left; }
-.hero-text .spots-wrap { align-self: flex-start; }
 .hero-text .spots-bar-bg { margin: 0 0 0.5rem; }
 
 .hero-phone {
-  flex-shrink: 0;
-  position: relative;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   animation: fadeUp 0.6s 0.5s ease both;
 }
 
-@media (max-width: 900px) {
+/* ── TABLET : une colonne, mockup visible réduit ── */
+@media (max-width: 960px) {
+  .hero { padding: 5rem 1.5rem 4rem; }
   .hero-inner {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 3rem;
   }
   .hero-text {
     align-items: center;
     text-align: center;
+    gap: 1.3rem;
   }
-  .hero-text .badge      { align-self: center; }
-  .hero-text .form-wrap  { justify-content: center; }
-  .hero-text .counter    { text-align: center; }
+  .hero-text .badge,
+  .hero-text h1,
+  .hero-text .hero-sub,
+  .hero-text .counter { text-align: center; }
   .hero-text .spots-bar-bg { margin: 0 auto 0.5rem; }
+  .hero-phone {
+    transform: scale(0.88);
+    transform-origin: top center;
+  }
+}
+
+/* ── MOBILE : mockup masqué sous 480px ── */
+@media (max-width: 480px) {
+  .hero { padding: 4rem 1.2rem 3rem; }
   .hero-phone { display: none; }
 }
 
@@ -648,12 +665,88 @@ footer {
   padding: 1rem 2.2rem;
   border-radius: 14px;
   text-decoration: none;
-  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+  /* Glow pulsant en boucle */
+  animation: apkGlowPulse 2.8s ease-in-out infinite;
+  transition: transform 0.2s, box-shadow 0.2s, animation 0s;
 }
 
+/* Shimmer qui balaie le bouton */
+.btn-download::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transform: skewX(-18deg);
+  animation: apkShimmer 3.2s ease-in-out infinite;
+}
+
+/* Anneau qui se dilate autour du bouton */
+.btn-download::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  border: 2px solid var(--accent);
+  opacity: 0;
+  animation: apkRing 2.8s ease-out infinite;
+}
+
+/* L'icône Android rebondit doucement */
+.btn-download svg {
+  animation: apkIconBounce 1.6s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+/* Hover : stop aux animations, effet statique */
 .btn-download:hover {
+  animation: none;
   transform: translateY(-3px);
-  box-shadow: 0 14px 36px rgba(200, 245, 96, 0.4);
+  box-shadow: 0 14px 36px rgba(200, 245, 96, 0.5);
+}
+.btn-download:hover::before { animation: none; opacity: 0; }
+.btn-download:hover::after  { animation: none; }
+.btn-download:hover svg     { animation: none; }
+
+/* ── Keyframes ── */
+@keyframes apkGlowPulse {
+  0%, 100% {
+    box-shadow:
+      0 8px 20px rgba(200, 245, 96, 0.2),
+      0 0 0 0 rgba(200, 245, 96, 0.35);
+  }
+  50% {
+    box-shadow:
+      0 12px 32px rgba(200, 245, 96, 0.45),
+      0 0 0 14px rgba(200, 245, 96, 0);
+  }
+}
+
+@keyframes apkShimmer {
+  0%   { left: -75%; opacity: 0; }
+  10%  { opacity: 1; }
+  60%  { left: 125%; opacity: 1; }
+  61%, 100% { left: 125%; opacity: 0; }
+}
+
+@keyframes apkRing {
+  0%   { inset: 0;     opacity: 0.7; }
+  100% { inset: -10px; opacity: 0; border-radius: 24px; }
+}
+
+@keyframes apkIconBounce {
+  0%, 100% { transform: translateY(0);   }
+  40%       { transform: translateY(3px); }
+  60%       { transform: translateY(1px); }
 }
 
 .android-badge {
