@@ -49,52 +49,66 @@
       }
       .spots-label strong { color: var(--accent); }
 
-      /* ── PLAY STORE BADGE ── */
+      /* ── BOUTON APK HÉRO ── */
       .hero-store {
         display: flex;
         flex-direction: column;
-        gap: 0.55rem;
+        gap: 0.6rem;
         animation: fadeUp 0.6s 0.35s ease both;
       }
-      .play-badge {
+      .hero-apk-btn {
         display: inline-flex;
         align-items: center;
-        gap: 0.85rem;
-        background: #0d0d0d;
-        border: 1.5px solid rgba(255,255,255,0.2);
+        gap: 0.9rem;
+        background: var(--accent);
+        color: #0a0a0f;
         border-radius: 12px;
-        padding: 0.7rem 1.6rem 0.7rem 1.2rem;
+        padding: 0.9rem 1.8rem 0.9rem 1.4rem;
         text-decoration: none;
-        transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
         width: fit-content;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.2s, box-shadow 0.2s;
+        /* Glow pulsant — même logique que le bouton APK section download */
+        animation: apkGlowPulse 2.8s ease-in-out infinite;
       }
-      .play-badge:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 32px rgba(0,0,0,0.6);
-        border-color: rgba(255,255,255,0.32);
+      .hero-apk-btn::before {
+        content: "";
+        position: absolute;
+        top: 0; left: -75%;
+        width: 50%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+        transform: skewX(-18deg);
+        animation: apkShimmer 3.4s ease-in-out infinite;
       }
-      .play-badge-text {
+      .hero-apk-btn:hover {
+        animation: none;
+        transform: translateY(-3px);
+        box-shadow: 0 14px 36px rgba(200,245,96,0.45);
+      }
+      .hero-apk-btn:hover::before { animation: none; opacity: 0; }
+      .hero-apk-text {
         display: flex;
         flex-direction: column;
-        line-height: 1.15;
+        line-height: 1.2;
       }
-      .play-badge-eyebrow {
-        font-size: 0.6rem;
-        color: rgba(255,255,255,0.65);
-        letter-spacing: 0.1em;
+      .hero-apk-main {
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        color: #0a0a0f;
+        letter-spacing: -0.01em;
+      }
+      .hero-apk-sub {
+        font-size: 0.7rem;
+        color: rgba(10,10,15,0.6);
         font-family: "DM Sans", sans-serif;
         font-weight: 400;
       }
-      .play-badge-name {
-        font-size: 1.18rem;
-        color: #fff;
-        font-family: "DM Sans", sans-serif;
-        font-weight: 500;
-        letter-spacing: -0.01em;
-      }
-      .store-note {
+      .hero-apk-reassurance {
         font-size: 0.75rem;
         color: var(--muted);
+        letter-spacing: 0.01em;
       }
 
       /* ── PHONE MOCKUP RÉALISTE ── */
@@ -505,22 +519,19 @@
             et à construire une vraie épargne, un jour à la fois.
           </p>
 
-          <!-- Badge Google Play -->
+          <!-- Bouton téléchargement APK -->
           <div class="hero-store">
-            <a href="#" class="play-badge" id="play-store-link" aria-label="Bientôt disponible sur Google Play">
-              <!-- Icône Google Play (4 sections colorées) -->
-              <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="36" height="36" aria-hidden="true">
-                <path d="M4 3 L4 29 L17.5 16 Z" fill="#00C4FF"/>
-                <path d="M4 3 L21 11 L17.5 16 Z" fill="#FFCA28"/>
-                <path d="M4 29 L17.5 16 L21 21 Z" fill="#34A853"/>
-                <path d="M17.5 16 L21 11 L26 16 L21 21 Z" fill="#EA4335"/>
+            <a href="#" class="hero-apk-btn" id="hero-apk-link">
+              <!-- Icône Android -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="26" height="26" fill="#0a0a0f" aria-hidden="true">
+                <path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5S11 23.33 11 22.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zm-2.5-1C2.67 17 2 17.67 2 18.5v-9C2 8.67 2.67 8 3.5 8S5 8.67 5 9.5v9c0 .83-.67 1.5-1.5 1.5zm17 0c-.83 0-1.5-.67-1.5-1.5v-9c0-.83.67-1.5 1.5-1.5S22 8.67 22 9.5v9c0 .83-.67 1.5-1.5 1.5zM15.53 2.16l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48A5.84 5.84 0 0 0 12 1c-.96 0-1.86.23-2.66.63L7.85.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31A5.955 5.955 0 0 0 6 7h12c0-1.99-.97-3.75-2.47-4.84zM10 5H9V4h1v1zm5 0h-1V4h1v1z"/>
               </svg>
-              <div class="play-badge-text">
-                <span class="play-badge-eyebrow">GET IT ON</span>
-                <span class="play-badge-name">Google Play</span>
+              <div class="hero-apk-text">
+                <span class="hero-apk-main">Télécharger l'app — Android</span>
+                <span class="hero-apk-sub">Version bêta gratuite · APK direct</span>
               </div>
             </a>
-            <p class="store-note">Version bêta · <strong style="color:var(--accent)">Téléchargement direct disponible</strong></p>
+            <p class="hero-apk-reassurance">🔒 Testé et sécurisé · Aucun abonnement requis</p>
           </div>
 
           <!-- Compteur inscrits -->
@@ -736,6 +747,11 @@
           <div class="feature-num">04</div>
           <h3>📊 Résumé hebdomadaire</h3>
           <p>Chaque semaine, tu vois combien tu as résisté, combien tu as économisé, et combien il te reste pour atteindre ton but.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-num">05</div>
+          <h3>🧾 Ton budget en clair</h3>
+          <p>En quelques clics, Pausr calcule exactement ce qu'il te reste après tes charges fixes. Revenus, loyer, transport, factures — tout est pris en compte. Tu sais enfin combien tu peux vraiment dépenser sans stress.</p>
         </div>
       </div>
     </section>
@@ -976,11 +992,8 @@
         <input type="text" id="feedback-name" placeholder="Ton prénom" required />
         <textarea id="feedback-message" placeholder="Ton message, ton avis, tes suggestions..." rows="4" required></textarea>
         <button type="submit" class="btn-primary">Envoyer mon avis →</button>
-        <div class="success-msg" id="feedback-success">
-           Merci pour ton avis ! On lit chaque message.
-        </div>
-        <div class="error-msg" id="feedback-error">
-          ⚠️ Une erreur est survenue. Réessaie dans quelques secondes.
+        <div class="success-msg" id="feedback-success"></div>
+        <div class="error-msg"   id="feedback-error">
         </div>
       </form>
     </section>

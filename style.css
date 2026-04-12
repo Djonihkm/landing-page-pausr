@@ -350,6 +350,13 @@ h1 em {
   gap: 1.2rem;
 }
 
+/* La 5e card seule sur sa ligne : centrée */
+.features-grid .feature-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  max-width: calc(50% - 0.6rem);
+  margin: 0 auto;
+}
+
 @media (max-width: 600px) {
   .features-grid {
     grid-template-columns: 1fr;

@@ -1,38 +1,49 @@
 // ============================================================
-// FEEDBACK FORM
+// FEEDBACK FORM → Supabase
 // ============================================================
 document.getElementById("feedback-form")?.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const name = document.getElementById("feedback-name").value.trim();
-  const message = document.getElementById("feedback-message").value.trim();
-  const success = document.getElementById("feedback-success");
-  const error = document.getElementById("feedback-error");
-  const btn = e.target.querySelector('button[type="submit"]');
 
-  if (!name || !message) return;
+  const prenomEl  = document.getElementById("feedback-name");
+  const messageEl = document.getElementById("feedback-message");
+  const successEl = document.getElementById("feedback-success");
+  const errorEl   = document.getElementById("feedback-error");
+  const btn       = e.target.querySelector('button[type="submit"]');
+
+  const prenom  = prenomEl.value.trim();
+  const message = messageEl.value.trim();
+
+  if (!prenom || !message) return;
+
+  // Reset état précédent
+  errorEl.style.display = "none";
 
   btn.disabled = true;
   const originalText = btn.textContent;
-  btn.textContent = "Envoi...";
+  btn.textContent = "Envoi en cours...";
 
   try {
     const response = await fetch("/api/feedback", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, message }),
+      body: JSON.stringify({ prenom, message }),
     });
 
-    if (response.ok || response.status === 204) {
+    if (response.ok) {
+      // Message personnalisé avec le prénom
+      successEl.textContent = `Merci ${prenom} ! On lit chaque message 🙏`;
       e.target.style.display = "none";
-      success.style.display = "block";
+      successEl.style.display = "block";
     } else {
-      throw new Error("Erreur serveur");
+      const data = await response.json().catch(() => ({}));
+      throw new Error(data.message || "Erreur serveur");
     }
   } catch (err) {
     btn.disabled = false;
     btn.textContent = originalText;
-    error.style.display = "block";
-    console.error("Feedback error:", err.message);
+    errorEl.textContent = `⚠️ ${err.message || "Une erreur est survenue. Réessaie dans quelques secondes."}`;
+    errorEl.style.display = "block";
+    console.error("[feedback]", err.message);
   }
 });
 
