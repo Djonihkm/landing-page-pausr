@@ -931,7 +931,9 @@ footer {
   align-self: flex-start;
 }
 
-.feedback-form .success-msg,
-.feedback-form .error-msg {
-  margin-top: 0;
+.feedback-form + .success-msg,
+.feedback-form + .success-msg + .error-msg,
+#feedback-success,
+#feedback-error {
+  margin-top: 0.75rem;
 }

@@ -30,6 +30,9 @@ document.getElementById("feedback-form")?.addEventListener("submit", async (e) =
     });
 
     if (response.ok) {
+      // Vider les champs
+      prenomEl.value = "";
+      messageEl.value = "";
       // Message personnalisé avec le prénom
       successEl.textContent = `Merci ${prenom} ! On lit chaque message 🙏`;
       e.target.style.display = "none";
