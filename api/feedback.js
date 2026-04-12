@@ -30,8 +30,8 @@ export default async function handler(req, res) {
   const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
 
   if (!supabaseUrl || !supabaseKey) {
-    console.error("[feedback] Variables Supabase manquantes");
-    return res.status(500).json({ message: "Configuration serveur incomplète" });
+    console.error("[feedback] Variables manquantes — ajoute SUPABASE_URL et SUPABASE_SERVICE_KEY dans Vercel > Settings > Environment Variables puis redéploie.");
+    return res.status(500).json({ message: "Service temporairement indisponible. Réessaie dans quelques minutes." });
   }
 
   try {
