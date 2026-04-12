@@ -1,4 +1,42 @@
 // ============================================================
+// FEEDBACK FORM
+// ============================================================
+document.getElementById("feedback-form")?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const name = document.getElementById("feedback-name").value.trim();
+  const message = document.getElementById("feedback-message").value.trim();
+  const success = document.getElementById("feedback-success");
+  const error = document.getElementById("feedback-error");
+  const btn = e.target.querySelector('button[type="submit"]');
+
+  if (!name || !message) return;
+
+  btn.disabled = true;
+  const originalText = btn.textContent;
+  btn.textContent = "Envoi...";
+
+  try {
+    const response = await fetch("/api/feedback", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, message }),
+    });
+
+    if (response.ok || response.status === 204) {
+      e.target.style.display = "none";
+      success.style.display = "block";
+    } else {
+      throw new Error("Erreur serveur");
+    }
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = originalText;
+    error.style.display = "block";
+    console.error("Feedback error:", err.message);
+  }
+});
+
+// ============================================================
 // Compteur d'inscrits affiché (doit correspondre au HTML)
 // ============================================================
 let count = 147;

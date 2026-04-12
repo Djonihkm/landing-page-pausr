@@ -271,47 +271,118 @@
       <div class="hero-glow"></div>
       <div class="hero-glow2"></div>
 
-      <div class="badge">
-        <span class="badge-dot"></span>
-        Bientôt disponible — accès anticipé
-      </div>
+      <div class="hero-inner">
+        <div class="hero-text">
+          <div class="badge">
+            <span class="badge-dot"></span>
+            Bientôt disponible — accès anticipé
+          </div>
 
-      <h1>
-        Tu sais que tu devrais épargner.<br />
-        <em>L'impulsion est plus forte.</em>
-      </h1>
+          <h1>
+            Tu sais que tu devrais épargner.<br />
+            <em>L'impulsion est plus forte.</em>
+          </h1>
 
-      <p class="hero-sub">
-        Pausr t'aide à reprendre le contrôle de tes dépenses impulsives et à
-        construire une vraie épargne, un jour à la fois.
-      </p>
+          <p class="hero-sub">
+            Pausr t'aide à reprendre le contrôle de tes dépenses impulsives et à
+            construire une vraie épargne, un jour à la fois.
+          </p>
 
-      <div class="form-wrap" id="hero-form">
-        <input type="email" id="hero-email" placeholder="ton@email.com" />
-        <button class="btn-primary" onclick="subscribe('hero-email', 'hero-success', 'hero-error')">
-          Je veux tester →
-        </button>
-      </div>
-      <div class="success-msg" id="hero-success">
-         Tu es sur la liste ! On te prévient en premier.
-      </div>
-      <div class="error-msg" id="hero-error">
-        ⚠️ Une erreur est survenue. Réessaie dans quelques secondes.
-      </div>
+          <div class="form-wrap" id="hero-form">
+            <input type="email" id="hero-email" placeholder="ton@email.com" />
+            <button class="btn-primary" onclick="subscribe('hero-email', 'hero-success', 'hero-error')">
+              Je veux tester →
+            </button>
+          </div>
+          <div class="success-msg" id="hero-success">
+             Tu es sur la liste ! On te prévient en premier.
+          </div>
+          <div class="error-msg" id="hero-error">
+            ⚠️ Une erreur est survenue. Réessaie dans quelques secondes.
+          </div>
 
-      <p class="counter">
-        <span id="count">147</span> personnes déjà inscrites
-      </p>
+          <p class="counter">
+            <span id="count">147</span> personnes déjà inscrites
+          </p>
 
-      <!-- SPOTS BAR -->
-      <div class="spots-wrap">
-        <div class="spots-bar-bg">
-          <div class="spots-bar-fill"></div>
+          <!-- SPOTS BAR -->
+          <div class="spots-wrap">
+            <div class="spots-bar-bg">
+              <div class="spots-bar-fill"></div>
+            </div>
+            <p class="spots-label"><strong>55 places restantes</strong> sur 200 pour la beta gratuite</p>
+          </div>
         </div>
-        <p class="spots-label"><strong>55 places restantes</strong> sur 200 pour la beta gratuite</p>
+
+        <!-- PHONE MOCKUP -->
+        <div class="hero-phone">
+          <div class="phone-glow"></div>
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="app-header">
+                <div class="app-logo">pausr</div>
+                <div class="app-streak">🔥 7 jours</div>
+              </div>
+              <div class="app-goal-card">
+                <div class="goal-label">Mon objectif</div>
+                <div class="goal-name">📱 Nouveau téléphone</div>
+                <div class="goal-progress-bg">
+                  <div class="goal-progress-fill"></div>
+                </div>
+                <div class="goal-amounts">
+                  <span>62 000 FCFA</span>
+                  <span>100 000 FCFA</span>
+                </div>
+              </div>
+              <div class="pause-btn-mock">⏸ Soumettre une impulsion</div>
+              <div class="app-stats">
+                <div class="stat-box">
+                  <div class="stat-val">14</div>
+                  <div class="stat-lbl">Impulsions résistées</div>
+                </div>
+                <div class="stat-box">
+                  <div class="stat-val">32k</div>
+                  <div class="stat-lbl">FCFA économisés</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
+
+    <!-- DOWNLOAD -->
+    <section class="download reveal">
+      <p class="section-label">Disponible maintenant</p>
+      <h2>Télécharge Pausr et<br />commence aujourd'hui</h2>
+
+      <div class="download-cta">
+        <a href="#" class="btn-download" id="apk-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zm-2.5-1C2.67 17 2 17.67 2 18.5v-9C2 8.67 2.67 8 3.5 8S5 8.67 5 9.5v9c0 .83-.67 1.5-1.5 1.5zm17 0c-.83 0-1.5-.67-1.5-1.5v-9c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v9c0 .83-.67 1.5-1.5 1.5zM15.53 2.16l1.3-1.3c.2-.2.2-.51 0-.71-.2-.2-.51-.2-.71 0l-1.48 1.48C13.85 1.23 12.95 1 12 1c-.96 0-1.86.23-2.66.63L7.85.15c-.2-.2-.51-.2-.71 0-.2.2-.2.51 0 .71l1.31 1.31C6.97 3.26 6 5.01 6 7h12c0-1.99-.97-3.75-2.47-4.84zM10 5H9V4h1v1zm5 0h-1V4h1v1z"/>
+          </svg>
+          Télécharger l'APK Android
+        </a>
+        <p class="android-badge">Android uniquement pour le moment</p>
+      </div>
+
+      <div class="install-steps">
+        <div class="install-step">
+          <div class="install-step-num">1</div>
+          <div class="install-step-text">Clique sur le bouton et télécharge le fichier APK</div>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">2</div>
+          <div class="install-step-text">Ouvre le fichier téléchargé sur ton téléphone Android</div>
+        </div>
+        <div class="install-step">
+          <div class="install-step-num">3</div>
+          <div class="install-step-text">Si Android te demande d'autoriser les sources inconnues, c'est normal et sécurisé pour les apps en phase de test bêta — appuie simplement sur <strong>Autoriser</strong></div>
+        </div>
+      </div>
+    </section>
 
     <!-- MIRROR -->
     <section class="mirror reveal">
@@ -322,7 +393,7 @@
         <div class="pain-card">
           <div class="pain-icon">🍔</div>
           <strong>La bouffe commandée</strong>
-          <p>Tu sais que cuisiner coûte moins cher. Mais ce soir, tu n'as pas l'énergie. Et l'app est là, à portée de doigt.</p>
+          <p>Tu sais que cuisiner coûte moins cher. Mais ce soir, tu n'as pas l'énergie. Et l'app de commande est là, à portée de doigt.</p>
         </div>
         <div class="pain-card">
           <div class="pain-icon">🤲</div>
@@ -348,7 +419,7 @@
         <div class="feature-card">
           <div class="feature-num">01</div>
           <h3>🎯 Ton objectif concret</h3>
-          <p>Voyage, voiture, épargne d'urgence... Tu choisis une photo, un montant, une date. Pausr calcule combien mettre de côté chaque semaine.</p>
+          <p>Voyage, voiture, épargne d'urgence... Tu choisis une photo, un montant, une date. Pausr calcule combien mettre de côté chaque mois.</p>
         </div>
         <div class="feature-card">
           <div class="feature-num">02</div>
@@ -407,6 +478,43 @@
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- FEEDBACK -->
+    <section class="feedback reveal">
+      <p class="section-label">Ton avis compte</p>
+      <h2>Donner mon avis</h2>
+      <p class="feedback-sub">Tu as testé Pausr ? Dis-nous ce que tu en penses — chaque retour nous aide à améliorer l'app.</p>
+
+      <div class="feedback-channels">
+        <a href="https://wa.me/NUMERO" class="feedback-channel feedback-channel--whatsapp" id="whatsapp-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+          </svg>
+          Envoyer sur WhatsApp
+        </a>
+        <a href="mailto:contact@pausr.app" class="feedback-channel feedback-channel--email" id="feedback-email-link">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+          Écrire par email
+        </a>
+      </div>
+
+      <div class="feedback-divider"><span>ou laisse un message direct</span></div>
+
+      <form class="feedback-form" id="feedback-form">
+        <input type="text" id="feedback-name" placeholder="Ton prénom" required />
+        <textarea id="feedback-message" placeholder="Ton message, ton avis, tes suggestions..." rows="4" required></textarea>
+        <button type="submit" class="btn-primary">Envoyer mon avis →</button>
+        <div class="success-msg" id="feedback-success">
+           Merci pour ton avis ! On lit chaque message.
+        </div>
+        <div class="error-msg" id="feedback-error">
+          ⚠️ Une erreur est survenue. Réessaie dans quelques secondes.
+        </div>
+      </form>
     </section>
 
     <!-- HOW IT WORKS -->
