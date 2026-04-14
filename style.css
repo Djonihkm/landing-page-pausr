@@ -262,10 +262,15 @@ h1 em {
 
 /* MIRROR SECTION */
 .mirror {
-  padding: 5rem 1.5rem;
-  max-width: 860px;
-  margin: 0 auto;
+  padding: 5rem 0;
   text-align: center;
+  overflow: hidden;
+}
+
+.mirror-header {
+  max-width: 860px;
+  margin: 0 auto 3rem;
+  padding: 0 1.5rem;
 }
 
 .section-label {
@@ -282,26 +287,52 @@ h1 em {
   font-weight: 700;
   font-size: clamp(1.8rem, 4vw, 2.8rem);
   letter-spacing: -0.02em;
-  margin-bottom: 3rem;
   line-height: 1.2;
 }
 
-.pain-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+/* ── Double marquee pain cards ── */
+.pain-marquee {
+  overflow: hidden;
+  width: 100%;
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  margin-bottom: 1rem;
+}
+.pain-marquee:last-child { margin-bottom: 0; }
+
+.pain-track {
+  display: flex;
   gap: 1rem;
+  width: max-content;
+}
+
+.pain-track--left  { animation: painScrollLeft  28s linear infinite; }
+.pain-track--right { animation: painScrollRight 24s linear infinite; }
+
+.pain-marquee:hover .pain-track { animation-play-state: paused; }
+
+@keyframes painScrollLeft {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes painScrollRight {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
 }
 
 .pain-card {
+  width: 300px;
+  flex-shrink: 0;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 1.5rem;
   text-align: left;
   transition: border-color 0.3s, transform 0.3s;
+  cursor: default;
 }
-.pain-card:hover {
-  border-color: rgba(200, 245, 96, 0.2);
+.pain-marquee:hover .pain-card:hover {
+  border-color: rgba(200, 245, 96, 0.22);
   transform: translateY(-4px);
 }
 
@@ -311,9 +342,9 @@ h1 em {
 }
 
 .pain-card p {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--muted);
-  line-height: 1.5;
+  line-height: 1.55;
 }
 
 .pain-card strong {
@@ -321,7 +352,7 @@ h1 em {
   color: var(--text);
   font-weight: 500;
   margin-bottom: 0.4rem;
-  font-size: 1rem;
+  font-size: 0.98rem;
 }
 
 /* FEATURES */
